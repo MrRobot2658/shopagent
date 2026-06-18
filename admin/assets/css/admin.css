@@ -226,6 +226,21 @@ button { font-family: inherit; cursor: pointer; }
 
 .topbar-spacer { flex: 1; }
 
+.topbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.topbar-link:hover { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+
 .store-switcher,
 .range-switcher {
   display: flex;
