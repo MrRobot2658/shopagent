@@ -521,6 +521,11 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 6px;
 }
 
+.demo-visit {
+  margin-top: 20px;
+  width: 100%;
+}
+
 /* Quote */
 .quote {
   max-width: 720px;

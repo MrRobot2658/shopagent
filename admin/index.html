@@ -35,9 +35,6 @@
         <p class="nav-group-label">系统</p>
         <button class="nav-item" data-target="settings"><span class="nav-ico">⚙️</span> Settings</button>
       </nav>
-      <div class="sidebar-foot">
-        <a href="/stores">↗ 返回前台 Demo Stores</a>
-      </div>
     </aside>
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
@@ -404,6 +401,30 @@
 
       </main>
     </div>
+  </div>
+
+  <!-- Floating AI Copilot (always on) -->
+  <div class="copilot" id="copilot">
+    <div class="copilot-panel" id="copilotPanel">
+      <div class="copilot-head">
+        <div>
+          <strong>Shops Agent Copilot</strong>
+          <small>运营助手 · 多智能体</small>
+        </div>
+        <button class="copilot-close" id="copilotClose" aria-label="关闭">✕</button>
+      </div>
+      <div class="copilot-body" id="copilotBody">
+        <div class="cp-msg bot">👋 我是你的运营副驾。订单、客户分层、AI 内容/修图、圈人选包，都可以问我。</div>
+        <div class="cp-msg bot">试试：「汇总 LUXEFUR 今天的 GMV 和转化」</div>
+        <div class="cp-msg bot">或：「圈出最近 7 天沉睡的高价值客户，导出到 Meta」</div>
+      </div>
+      <div class="copilot-input">
+        <input type="text" placeholder="问点什么…（演示）" aria-label="输入消息">
+        <button aria-label="发送">➤</button>
+      </div>
+      <div class="copilot-foot">Powered by Shops Agent · DeepSeek</div>
+    </div>
+    <button class="copilot-fab" id="copilotFab" aria-label="打开 Copilot">💬</button>
   </div>
 
   <script src="/admin/assets/js/admin.js"></script>

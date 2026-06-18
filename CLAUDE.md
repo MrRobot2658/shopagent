@@ -33,13 +33,13 @@ Deploy: Vercel (static). `vercel.json` sets `cleanUrls: true`, so `/admin` resol
 
 Each top-level directory is **one self-contained page** with its own `assets/{css,js}`:
 
-- `fur-expo/` — the main fur-expo landing page (root nav points here as 皮草展).
-- `stores/` — `/stores`, the public "Demo Stores" list; cards link out to each store's landing page.
-- `admin/` — `/admin`, a TailAdmin-style **single-page admin console**. The sidebar's 11 modules (Dashboard, 店铺 Stores, Orders, Customers, AI Content, AI Images, Chatbot, Platforms, Payments, ERP, Settings) map to PDF modules. All data is hardcoded mock content.
+- `fur-expo/` — `/fur-expo`, the **Shops Agent 官网** (platform marketing landing). Its `#demos` section is the demo-stores hub; each card links to a store landing page.
+- `luxefur/`, `pawmaison/`, `cupid-sport/` — the three **demo store landing pages** (Kith / Wild One / Ten Thousand-inspired). Each is self-contained with its own brand `style.css`, a mobile nav, and a floating bottom-right AI chatbot widget. Built per the Live Demo designs in the product PDF.
+- `admin/` — `/admin`, a TailAdmin-style **single-page admin console**. The sidebar's 11 modules (Dashboard, 店铺 Stores, Orders, Customers, AI Content, AI Images, Chatbot, Platforms, Payments, ERP, Settings) map to PDF modules; the 店铺 Stores section is the front-end-preview hub (each tile's "前端预览" → a store page). Top-right has a 🌐 官网 link and a store switcher; an always-on floating Copilot widget sits bottom-right. All data is hardcoded mock content.
 
 Key conventions to preserve when editing or adding pages:
 
-- **No shared CSS bundle.** `fur-expo/` and `stores/` each have a *copy* of a `style.css` built on the same design tokens; `admin/` has its own `admin.css`. Shared design tokens (CSS `:root` vars): primary `#0f172a`, accent gold `#c9a86c`, sidebar `#0b1120`. Match these when adding UI rather than introducing new colors.
+- **No shared CSS bundle.** Every page directory has its own `assets/css/style.css` (admin: `admin.css`). The platform pages (`fur-expo/`, `admin/`) share design tokens: primary `#0f172a`, accent gold `#c9a86c`, sidebar `#0b1120`. The three demo stores each define their own distinct brand palette — do not force them onto the platform tokens.
 - **Admin section switching** (`admin/assets/js/admin.js`): any element with `data-target="<x>"` shows `#page-<x>` and toggles the matching `.nav-item`. Every `data-target` must have a corresponding `#page-*` section. The store switcher (`#storeSelect`) drives per-store mock KPIs/chart from the `STORES` object and re-renders the CSS-bar revenue chart.
 - **All links — cross-page and asset — are absolute, clean-URL paths** (`/fur-expo`, `/admin/assets/css/admin.css`), relying on `cleanUrls`. Do NOT use relative asset paths (`assets/...`): with `cleanUrls` the canonical page URL has no trailing slash (e.g. `/admin`), so a relative `assets/...` resolves to `/assets/...` (404) instead of `/admin/assets/...`.
 - **Front-end preview wiring**: the admin "店铺 Stores" section is the preview hub — each store tile's "前端预览" button links to that store's public landing page (LUXEFUR → `/fur-expo`). Unbuilt stores (PAWMAISON, CUPID SPORT) show a disabled placeholder until their landing pages exist.

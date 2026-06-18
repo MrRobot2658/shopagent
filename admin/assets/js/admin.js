@@ -80,6 +80,38 @@
   if (menuBtn) menuBtn.addEventListener('click', function () { sidebar.classList.toggle('is-open'); });
   if (backdrop) backdrop.addEventListener('click', closeSidebar);
 
+  /* ---------- Floating Copilot ---------- */
+  var copilot = document.getElementById('copilot');
+  var copilotFab = document.getElementById('copilotFab');
+  var copilotClose = document.getElementById('copilotClose');
+  var cpBody = document.getElementById('copilotBody');
+  var cpInput = document.querySelector('.copilot-input input');
+  var cpSend = document.querySelector('.copilot-input button');
+
+  if (copilotFab) copilotFab.addEventListener('click', function () { copilot.classList.toggle('is-open'); });
+  if (copilotClose) copilotClose.addEventListener('click', function () { copilot.classList.remove('is-open'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && copilot) copilot.classList.remove('is-open'); });
+
+  function cpAppend(text, who) {
+    if (!cpBody) return;
+    var m = document.createElement('div');
+    m.className = 'cp-msg ' + who;
+    m.textContent = text;
+    cpBody.appendChild(m);
+    cpBody.scrollTop = cpBody.scrollHeight;
+  }
+  function cpSendMsg() {
+    var v = (cpInput.value || '').trim();
+    if (!v) return;
+    cpAppend(v, 'user');
+    cpInput.value = '';
+    setTimeout(function () {
+      cpAppend('（演示）已收到：「' + v + '」。接入 DeepSeek / Vercel AI Gateway 后即可返回真实运营结果。', 'bot');
+    }, 500);
+  }
+  if (cpSend) cpSend.addEventListener('click', cpSendMsg);
+  if (cpInput) cpInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') cpSendMsg(); });
+
   /* ---------- Init ---------- */
   applyStore('fur');
 })();
