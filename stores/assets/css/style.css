@@ -257,10 +257,37 @@ h1, h2, h3, h4, h5, h6, p {
   box-shadow: var(--shadow-md);
 }
 
+.store-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
 .store-emoji {
   font-size: 2.5rem;
   line-height: 1;
-  margin-bottom: 16px;
+}
+
+.store-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.status-live {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+}
+
+.status-soon {
+  background: #f3f4f6;
+  color: #9ca3af;
 }
 
 .store-card h2 {
