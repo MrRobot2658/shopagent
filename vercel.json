@@ -6,6 +6,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/", "destination": "/stores", "permanent": false }
+    { "source": "/", "destination": "/admin", "permanent": false }
   ]
 }
