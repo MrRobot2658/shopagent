@@ -18,7 +18,7 @@
       <nav class="sidebar-nav" id="sidebarNav">
         <p class="nav-group-label">概览</p>
         <button class="nav-item is-active" data-target="dashboard"><span class="nav-ico">📊</span> Dashboard</button>
-        <button class="nav-item" data-target="stores"><span class="nav-ico">🏬</span> 店铺 Stores <span class="nav-badge">3</span></button>
+        <button class="nav-item" data-target="stores"><span class="nav-ico">🏬</span> Stores <span class="nav-badge">6</span></button>
         <button class="nav-item" data-target="orders"><span class="nav-ico">📦</span> Orders</button>
         <button class="nav-item" data-target="customers"><span class="nav-ico">👥</span> Customers</button>
 
@@ -51,6 +51,9 @@
             <option value="fur" selected>🦊 LUXEFUR</option>
             <option value="pet">🐾 PAWMAISON</option>
             <option value="sport">🏃 CUPID SPORT</option>
+            <option value="women">🌸 BELLE FLEUR</option>
+            <option value="home">🤖 NIMBUS</option>
+            <option value="jewel">💍 AUREA</option>
           </select>
         </div>
         <div class="range-switcher">
@@ -138,8 +141,8 @@
         <!-- ============ Stores · 前端预览中心 ============ -->
         <section class="page" id="page-stores">
           <div class="page-head">
-            <h1>店铺 Stores</h1>
-            <p>一套 Shops Agent，三个垂直品类。点击「前端预览」查看店铺落地页。</p>
+            <h1>Stores</h1>
+            <p>一套 Shops Agent，六个垂直品类。点击「前端预览」查看店铺落地页。</p>
           </div>
           <div class="store-grid">
             <article class="store-tile">
@@ -186,6 +189,54 @@
                 <div class="store-actions">
                   <a class="btn btn-primary" href="/cupid-sport" target="_blank" rel="noopener">↗ 前端预览</a>
                   <button class="btn btn-ghost" data-store-jump="sport">查看数据</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="store-tile">
+              <div class="store-preview pv-women">
+                <span class="store-state live">● 已上线</span>
+                <span class="pv-emoji">🌸</span>
+                <span class="pv-brand">BELLE FLEUR</span>
+              </div>
+              <div class="store-body">
+                <h3>浪漫女装</h3>
+                <p class="meta">杭州女装产业带 · OEM · 客单价 $185–345 · DHL 5–8 天 · 覆盖 US/EU/AU。Shopify + TikTok Shop · 穿搭顾问 Chatbot · AI 场景替换（花园）。</p>
+                <div class="store-actions">
+                  <a class="btn btn-primary" href="/belle-fleur" target="_blank" rel="noopener">↗ 前端预览</a>
+                  <button class="btn btn-ghost" data-store-jump="women">查看数据</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="store-tile">
+              <div class="store-preview pv-home">
+                <span class="store-state live">● 已上线</span>
+                <span class="pv-emoji">🤖</span>
+                <span class="pv-brand">NIMBUS</span>
+              </div>
+              <div class="store-body">
+                <h3>智能家电</h3>
+                <p class="meta">苏州小家电产业带 · ODM · 客单价 $129–699 · 海外仓 2 天达 · 覆盖 US/EU/JP。Shopify + Amazon · 选购售后 Chatbot · AI 场景替换（客厅）。</p>
+                <div class="store-actions">
+                  <a class="btn btn-primary" href="/nimbus" target="_blank" rel="noopener">↗ 前端预览</a>
+                  <button class="btn btn-ghost" data-store-jump="home">查看数据</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="store-tile">
+              <div class="store-preview pv-jewel">
+                <span class="store-state live">● 已上线</span>
+                <span class="pv-emoji">💍</span>
+                <span class="pv-brand">AUREA</span>
+              </div>
+              <div class="store-body">
+                <h3>纯金饰品</h3>
+                <p class="meta">深圳水贝珠宝产业带 · 一件代发 · 客单价 $290–540 · 顺丰保价 3–5 天 · 覆盖 US/EU/中东。Shopify + 独立站 · 珠宝选购 Chatbot · AI 场景替换（礼盒）。</p>
+                <div class="store-actions">
+                  <a class="btn btn-primary" href="/aurea" target="_blank" rel="noopener">↗ 前端预览</a>
+                  <button class="btn btn-ghost" data-store-jump="jewel">查看数据</button>
                 </div>
               </div>
             </article>
@@ -427,6 +478,8 @@
     <button class="copilot-fab" id="copilotFab" aria-label="打开 Copilot">💬</button>
   </div>
 
+  <script src="/shared/auth.js"></script>
   <script src="/admin/assets/js/admin.js"></script>
+  <script src="/shared/chat.js"></script>
 </body>
 </html>

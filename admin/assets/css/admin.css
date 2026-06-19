@@ -436,12 +436,18 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   justify-content: center;
   gap: 6px;
   color: #fff;
+  background-size: cover;
+  background-position: center;
 }
-.store-preview .pv-emoji { font-size: 2.6rem; }
-.store-preview .pv-brand { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.14em; }
-.pv-fur { background: linear-gradient(135deg, #3a2e22, #6b5436); }
-.pv-pet { background: linear-gradient(135deg, #1f4d46, #2f7d6f); }
-.pv-sport { background: linear-gradient(135deg, #111827, #334155); }
+/* Self-contained storefront preview mockups — no scrim/wordmark (store name is in the tile body) */
+.store-preview .pv-emoji,
+.store-preview .pv-brand { display: none; }
+.pv-fur   { background-image: url('/luxefur/assets/img/preview.webp'); }
+.pv-pet   { background-image: url('/pawmaison/assets/img/preview.webp'); }
+.pv-sport { background-image: url('/cupid-sport/assets/img/preview.webp'); }
+.pv-women { background-image: url('/belle-fleur/assets/img/preview.webp'); }
+.pv-home  { background-image: url('/nimbus/assets/img/preview.webp'); }
+.pv-jewel { background-image: url('/aurea/assets/img/preview.webp'); }
 .store-state {
   position: absolute; top: 12px; right: 12px;
   font-size: 0.72rem; font-weight: 700;

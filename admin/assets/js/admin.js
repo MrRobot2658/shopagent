@@ -8,7 +8,13 @@
     pet:   { name: 'PAWMAISON',   visitors: '51,038', orders: '3,142', revenue: '$486K',  cvr: '3.42%',
              rev: [30, 38, 44, 41, 52, 58, 55, 63, 69, 74] },
     sport: { name: 'CUPID SPORT', visitors: '127,654', orders: '8,930', revenue: '$392K', cvr: '4.10%',
-             rev: [48, 52, 60, 58, 67, 72, 70, 81, 88, 95] }
+             rev: [48, 52, 60, 58, 67, 72, 70, 81, 88, 95] },
+    women: { name: 'BELLE FLEUR', visitors: '96,420', orders: '4,615', revenue: '$1.18M', cvr: '3.18%',
+             rev: [35, 41, 50, 47, 58, 64, 62, 71, 79, 86] },
+    home:  { name: 'NIMBUS',      visitors: '68,733', orders: '1,902', revenue: '$1.04M', cvr: '2.74%',
+             rev: [40, 46, 44, 55, 61, 59, 68, 73, 77, 83] },
+    jewel: { name: 'AUREA',       visitors: '44,517', orders: '1,356', revenue: '$612K',  cvr: '3.05%',
+             rev: [28, 34, 39, 45, 43, 52, 57, 60, 66, 72] }
   };
   var WEEKS = ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10'];
 
@@ -45,16 +51,28 @@
     }).join('');
   }
 
+  function paint(name, kpis, rev) {
+    if (ctxStore) ctxStore.textContent = name;
+    Object.keys(kpis).forEach(function (k) {
+      var el = document.querySelector('[data-kpi="' + k + '"]');
+      if (el) el.textContent = kpis[k];
+    });
+    renderChart(rev);
+  }
+
   function applyStore(key) {
     var s = STORES[key];
     if (!s) return;
-    if (ctxStore) ctxStore.textContent = s.name;
-    var map = { visitors: s.visitors, orders: s.orders, revenue: s.revenue, cvr: s.cvr };
-    Object.keys(map).forEach(function (k) {
-      var el = document.querySelector('[data-kpi="' + k + '"]');
-      if (el) el.textContent = map[k];
-    });
-    renderChart(s.rev);
+    // Optimistic paint from local mock, then hydrate from the backend data API.
+    paint(s.name, { visitors: s.visitors, orders: s.orders, revenue: s.revenue, cvr: s.cvr }, s.rev);
+    var base = window.SHOPAGENT_API || '';
+    fetch(base + '/api/dashboard?store=' + key, { credentials: 'same-origin' })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (d) {
+        if (storeSelect && storeSelect.value !== key) return; // stale response
+        paint(d.store.name, d.kpis, d.revenue_series);
+      })
+      .catch(function () { /* backend offline — keep mock values */ });
   }
 
   if (storeSelect) {
@@ -84,33 +102,12 @@
   var copilot = document.getElementById('copilot');
   var copilotFab = document.getElementById('copilotFab');
   var copilotClose = document.getElementById('copilotClose');
-  var cpBody = document.getElementById('copilotBody');
-  var cpInput = document.querySelector('.copilot-input input');
-  var cpSend = document.querySelector('.copilot-input button');
 
   if (copilotFab) copilotFab.addEventListener('click', function () { copilot.classList.toggle('is-open'); });
   if (copilotClose) copilotClose.addEventListener('click', function () { copilot.classList.remove('is-open'); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && copilot) copilot.classList.remove('is-open'); });
-
-  function cpAppend(text, who) {
-    if (!cpBody) return;
-    var m = document.createElement('div');
-    m.className = 'cp-msg ' + who;
-    m.textContent = text;
-    cpBody.appendChild(m);
-    cpBody.scrollTop = cpBody.scrollHeight;
-  }
-  function cpSendMsg() {
-    var v = (cpInput.value || '').trim();
-    if (!v) return;
-    cpAppend(v, 'user');
-    cpInput.value = '';
-    setTimeout(function () {
-      cpAppend('（演示）已收到：「' + v + '」。接入 DeepSeek / Vercel AI Gateway 后即可返回真实运营结果。', 'bot');
-    }, 500);
-  }
-  if (cpSend) cpSend.addEventListener('click', cpSendMsg);
-  if (cpInput) cpInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') cpSendMsg(); });
+  // Copilot send/stream is handled by the shared client (/shared/chat.js),
+  // which calls the backend /api/chat and falls back to a canned message offline.
 
   /* ---------- Init ---------- */
   applyStore('fur');

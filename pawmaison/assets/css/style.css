@@ -868,3 +868,61 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* === Real imagery ===
+   Swaps the CSS gradient/emoji placeholders for the real generated photos.
+   Paths are absolute clean-URL so they resolve under Vercel + nginx, and the
+   page still renders fine with the backend offline (static assets only). */
+
+/* Turn every placeholder block into a cover-fit photo frame */
+.placeholder {
+  background-color: var(--line);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Hide the now-redundant dot pattern, emoji, label and paw overlays */
+.placeholder::before {
+  display: none;
+}
+.placeholder .ph-emoji,
+.placeholder .ph-label,
+.placeholder .ph-paw {
+  display: none;
+}
+
+/* Hero — happy dog in a luxury modern home.
+   The hero copy lives in a separate grid column (not over the image),
+   so no scrim is needed for text legibility. */
+.placeholder-hero {
+  background-image: url("/pawmaison/assets/img/hero.webp");
+}
+
+/* Category tiles — matched to what each photo actually depicts */
+.ph-bed {
+  background-image: url("/pawmaison/assets/img/product-1.webp");
+} /* Velvet Dog Bed */
+.ph-collar {
+  background-image: url("/pawmaison/assets/img/product-2.webp");
+} /* Leather Collar */
+.ph-travel {
+  background-image: url("/pawmaison/assets/img/product-3.webp");
+} /* Pet Carrier Bag */
+.ph-food {
+  background-image: url("/pawmaison/assets/img/product-4.webp");
+} /* Freeze-Dried Food */
+
+/* Lifestyle band behind the testimonial — golden retriever + cat in a living
+   room. A sage scrim over the photo keeps the white review text readable. */
+.review {
+  position: relative;
+  background-image: linear-gradient(
+      rgba(33, 79, 67, 0.82),
+      rgba(33, 79, 67, 0.82)
+    ),
+    url("/pawmaison/assets/img/ad.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
