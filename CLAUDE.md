@@ -4,7 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A **static marketing/demo site** for "Shops Agent" — an AI-driven DTC cross-border e-commerce platform pitched at the 2026 皮草产业展 (fur expo). There is **no build step, no framework, no package.json, no tests**. Every page is hand-written HTML + vanilla CSS + a small vanilla JS file, served as-is by Vercel.
+A **static marketing/demo site** for "Shops Agent" — an AI-driven DTC cross-border e-commerce platform pitched at the 2026 皮草产业展 (fur expo). The front-end has **no build step, no framework, no package.json, no tests** — every page is hand-written HTML + vanilla CSS + a small vanilla JS file, served as-is by Vercel.
+
+There is now also a **FastAPI backend** in `backend/` (see `backend/README.md`): AI chat (store concierge + admin Copilot), data APIs (stores/products/orders/customers/dashboard), AI content/image generation, and checkout. AI is **mock by default** (no key; pluggable to real Claude via `AI_PROVIDER=claude`).
+
+**Docker = two services** (`docker compose up --build` at the repo root):
+- `frontend` — **nginx** serving the static site (mounts the repo at `/usr/share/nginx/html`, replicates Vercel cleanUrls + redirects in `frontend/nginx.conf`) and **reverse-proxying `/api/` → backend**. Published on **http://localhost:8090**. nginx.conf is baked into the image (COPY) — rebuild to change it; the `/api/` block uses the Docker resolver (`127.0.0.11`) + a variable upstream so nginx doesn't crash if the backend isn't up yet, and `proxy_buffering off` keeps SSE chat streaming.
+- `backend` — FastAPI/uvicorn, **API-only** (`STATIC_ROOT=""`). Reachable to nginx over the compose network and published on **http://localhost:8091** for direct API testing.
+
+The backend *can* also serve the static site itself (set `STATIC_ROOT`, used in single-container setups), but the split deploy leaves that off. Note: host port 8000 is taken by an unrelated local app, hence 8090/8091. The front-end calls same-origin `fetch('/api/...')` (shared client: `/shared/chat.js`) and **degrades gracefully when the backend is offline**, so the static Vercel deploy keeps working unchanged. Set `window.SHOPAGENT_API` to point the static site at a remote backend.
 
 The two PDFs at the repo root are the **product spec / source of truth** for content and visual mockups:
 - `ShopsAgent_产品介绍和案例展示.pdf` — full product intro, the Admin Dashboard mockup, and the three Live Demo store designs.

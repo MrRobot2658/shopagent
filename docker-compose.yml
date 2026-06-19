@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./backend
+    container_name: shopagent-backend
+    environment:
+      # AI provider: "mock" (default, no key) or "claude" (set ANTHROPIC_API_KEY)
+      AI_PROVIDER: ${AI_PROVIDER:-mock}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-opus-4-8}
+      ANTHROPIC_BASE_URL: ${ANTHROPIC_BASE_URL:-}
+      STREAM_DELAY: ${STREAM_DELAY:-0.03}
+      STATIC_ROOT: ""        # API-only; nginx serves the static site now
+    volumes:
+      - ./backend/app:/code/app   # hot-reload API code
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    expose:
+      - "8000"               # reachable to the frontend over the compose network
+    ports:
+      - "8091:8000"          # optional: hit the API directly for testing
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: shopagent-frontend
+    ports:
+      - "8090:80"            # open http://localhost:8090
+    volumes:
+      - .:/usr/share/nginx/html:ro                       # serve the repo as static
+      # nginx.conf is baked into the image (COPY in Dockerfile); rebuild to change it.
+    depends_on:
+      - backend
+    restart: unless-stopped
