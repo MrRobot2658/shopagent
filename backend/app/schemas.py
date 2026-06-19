@@ -6,6 +6,11 @@ from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
 class ChatMessage(BaseModel):
     role: Literal["user", "assistant", "system"]
     content: str

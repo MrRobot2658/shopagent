@@ -1,22 +1,61 @@
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: shopagent-db
+    environment:
+      POSTGRES_USER: shopagent
+      POSTGRES_PASSWORD: shopagent
+      POSTGRES_DB: shopagent
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"          # host 5433 (5432 may be taken locally)
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shopagent"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: shopagent-redis
+    ports:
+      - "6380:6379"          # host 6380 (6379 may be taken locally)
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
   backend:
     build: ./backend
     container_name: shopagent-backend
     environment:
+      DATABASE_URL: postgresql+asyncpg://shopagent:shopagent@db:5432/shopagent
+      REDIS_URL: redis://redis:6379/0
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
       # AI provider: "mock" (default, no key) or "claude" (set ANTHROPIC_API_KEY)
       AI_PROVIDER: ${AI_PROVIDER:-mock}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-opus-4-8}
       ANTHROPIC_BASE_URL: ${ANTHROPIC_BASE_URL:-}
       STREAM_DELAY: ${STREAM_DELAY:-0.03}
-      STATIC_ROOT: ""        # API-only; nginx serves the static site now
+      STATIC_ROOT: ""        # API-only; nginx serves the static site
     volumes:
       - ./backend/app:/code/app   # hot-reload API code
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     expose:
-      - "8000"               # reachable to the frontend over the compose network
+      - "8000"
     ports:
       - "8091:8000"          # optional: hit the API directly for testing
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     restart: unless-stopped
 
   frontend:
@@ -25,8 +64,10 @@ services:
     ports:
       - "8090:80"            # open http://localhost:8090
     volumes:
-      - .:/usr/share/nginx/html:ro                       # serve the repo as static
-      # nginx.conf is baked into the image (COPY in Dockerfile); rebuild to change it.
+      - .:/usr/share/nginx/html:ro
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  pgdata:

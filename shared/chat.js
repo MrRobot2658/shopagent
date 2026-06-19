@@ -22,6 +22,7 @@
     return fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
       body: JSON.stringify(payload),
     }).then(function (res) {
       if (!res.ok || !res.body) throw new Error("bad response " + res.status);

@@ -12,10 +12,25 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
 
-from . import config
-from .routers import ai_gen, catalog, chat, orders
+from contextlib import asynccontextmanager
 
-app = FastAPI(title="Shops Agent API", version="1.0.0")
+from . import auth, config
+from .db.seed import init_db
+from .routers import ai_gen, catalog, chat, orders
+from .routers import auth as auth_router
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_db()
+    yield
+    try:
+        await auth.get_redis().aclose()
+    except Exception:
+        pass
+
+
+app = FastAPI(title="Shops Agent API", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,6 +39,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth_router.router)
 app.include_router(chat.router)
 app.include_router(catalog.router)
 app.include_router(orders.router)

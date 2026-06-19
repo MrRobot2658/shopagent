@@ -6,13 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A **static marketing/demo site** for "Shops Agent" — an AI-driven DTC cross-border e-commerce platform pitched at the 2026 皮草产业展 (fur expo). The front-end has **no build step, no framework, no package.json, no tests** — every page is hand-written HTML + vanilla CSS + a small vanilla JS file, served as-is by Vercel.
 
-There is now also a **FastAPI backend** in `backend/` (see `backend/README.md`): AI chat (store concierge + admin Copilot), data APIs (stores/products/orders/customers/dashboard), AI content/image generation, and checkout. AI is **mock by default** (no key; pluggable to real Claude via `AI_PROVIDER=claude`).
+There is now also a **FastAPI backend** in `backend/` (see `backend/README.md`): AI chat (store concierge + admin Copilot), data APIs (stores/products/orders/customers/dashboard), AI content/image generation, checkout, and **admin login**. AI is **mock by default** (no key; pluggable to real Claude via `AI_PROVIDER=claude`). Data lives in **PostgreSQL** (SQLAlchemy 2.0 async + asyncpg); login **sessions live in Redis** (httponly cookie `sa_session` → session JSON with TTL); passwords are PBKDF2 (stdlib). DB tables are created + seeded from `app/data.py` on startup (idempotent) along with a seed admin user (`admin` / `admin123`, override via `ADMIN_USER`/`ADMIN_PASSWORD`).
 
-**Docker = two services** (`docker compose up --build` at the repo root):
+**Docker = four services** (`docker compose up --build` at the repo root):
 - `frontend` — **nginx** serving the static site (mounts the repo at `/usr/share/nginx/html`, replicates Vercel cleanUrls + redirects in `frontend/nginx.conf`) and **reverse-proxying `/api/` → backend**. Published on **http://localhost:8090**. nginx.conf is baked into the image (COPY) — rebuild to change it; the `/api/` block uses the Docker resolver (`127.0.0.11`) + a variable upstream so nginx doesn't crash if the backend isn't up yet, and `proxy_buffering off` keeps SSE chat streaming.
-- `backend` — FastAPI/uvicorn, **API-only** (`STATIC_ROOT=""`). Reachable to nginx over the compose network and published on **http://localhost:8091** for direct API testing.
+- `backend` — FastAPI/uvicorn, **API-only** (`STATIC_ROOT=""`). Published on **http://localhost:8091** for direct API testing; `depends_on` db+redis `service_healthy`.
+- `db` — **postgres:16** (host **5433**→5432, named volume `pgdata`).
+- `redis` — **redis:7** (host **6380**→6379).
 
-The backend *can* also serve the static site itself (set `STATIC_ROOT`, used in single-container setups), but the split deploy leaves that off. Note: host port 8000 is taken by an unrelated local app, hence 8090/8091. The front-end calls same-origin `fetch('/api/...')` (shared client: `/shared/chat.js`) and **degrades gracefully when the backend is offline**, so the static Vercel deploy keeps working unchanged. Set `window.SHOPAGENT_API` to point the static site at a remote backend.
+Auth split: **public** = store concierge chat (`surface:store`), products, checkout. **Login-required (401 otherwise)** = dashboard, customers, orders, admin Copilot (`surface:copilot`), AI content/image. The admin page shows a login overlay (`/shared/auth.js`) that calls `/api/auth/login`.
+
+The backend *can* also serve the static site itself (set `STATIC_ROOT`), but the split deploy leaves that off. Host ports are 8090/8091/5433/6380 because 8000/5432/6379 are taken by unrelated local apps. The front-end calls same-origin `fetch('/api/...', {credentials:'same-origin'})` (shared clients `/shared/chat.js`, `/shared/auth.js`) and **degrades gracefully when the backend is offline** (login gate is skipped, data falls back to hardcoded mock), so the static Vercel deploy keeps working unchanged. Set `window.SHOPAGENT_API` to point the static site at a remote backend.
 
 The two PDFs at the repo root are the **product spec / source of truth** for content and visual mockups:
 - `ShopsAgent_产品介绍和案例展示.pdf` — full product intro, the Admin Dashboard mockup, and the three Live Demo store designs.

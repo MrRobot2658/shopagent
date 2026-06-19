@@ -60,7 +60,7 @@
     // Optimistic paint from local mock, then hydrate from the backend data API.
     paint(s.name, { visitors: s.visitors, orders: s.orders, revenue: s.revenue, cvr: s.cvr }, s.rev);
     var base = window.SHOPAGENT_API || '';
-    fetch(base + '/api/dashboard?store=' + key)
+    fetch(base + '/api/dashboard?store=' + key, { credentials: 'same-origin' })
       .then(function (r) { if (!r.ok) throw 0; return r.json(); })
       .then(function (d) {
         if (storeSelect && storeSelect.value !== key) return; // stale response

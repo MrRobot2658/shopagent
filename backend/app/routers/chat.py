@@ -3,18 +3,22 @@ from __future__ import annotations
 
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 
 from .. import data
 from ..ai.base import get_provider
+from ..auth import current_user
 from ..schemas import ChatRequest
 
 router = APIRouter(prefix="/api", tags=["chat"])
 
 
 @router.post("/chat")
-async def chat(req: ChatRequest):
+async def chat(req: ChatRequest, user=Depends(current_user)):
+    # Store concierge is public; the admin Copilot requires login.
+    if req.surface == "copilot" and not user:
+        raise HTTPException(status_code=401, detail="Copilot 需要登录")
     provider = get_provider()
     store = data.store_by_key(req.store) if req.store else None
     messages = [m.model_dump() for m in req.messages]
