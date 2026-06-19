@@ -618,3 +618,44 @@ a { color: inherit; text-decoration: none; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+/* === Real imagery === */
+/* Drop the placeholder grid texture wherever a real photo now sits */
+.ph-hero::before,
+.ph-card::before { display: none; }
+
+/* HERO — sprinting athlete cover shot (16:9 source, cropped into the 4:5 frame) */
+.ph-hero {
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0) 52%, rgba(10, 10, 10, 0.42) 100%),
+    url("/cupid-sport/assets/img/hero.png") center / cover no-repeat;
+}
+.ph-hero .ph-emoji,
+.ph-hero .ph-name { display: none; }
+/* Keep the "⚡ ENGINEERED" tag as a legible overlay badge on the photo */
+.ph-hero .ph-tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(10, 10, 10, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* COLLECTION — product photos in DOM order (1=Training, 2=Runner, 3=Compression, 4=Casual) */
+.ph-card .ph-emoji,
+.ph-card .ph-name { display: none; }
+.ph-1 { background: url("/cupid-sport/assets/img/product-1.png") center / cover no-repeat; }
+.ph-2 { background: url("/cupid-sport/assets/img/product-2.png") center / cover no-repeat; }
+.ph-3 { background: url("/cupid-sport/assets/img/product-3.png") center / cover no-repeat; }
+.ph-4 { background: url("/cupid-sport/assets/img/product-4.png") center / cover no-repeat; }
+/* Subtle zoom on hover now that the emoji is gone */
+.card:hover .ph-card { transform: scale(1.04); transition: transform 0.4s ease; }
+
+/* ACTION BAND — intense workout shot behind the social-proof stats, dark scrim for white text */
+.stats {
+  position: relative;
+  background:
+    linear-gradient(rgba(8, 8, 8, 0.84), rgba(8, 8, 8, 0.9)),
+    url("/cupid-sport/assets/img/ad.png") center / cover no-repeat;
+}

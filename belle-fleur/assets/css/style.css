@@ -476,3 +476,46 @@ img { max-width: 100%; display: block; }
   .footer-bottom, .footer-meta { flex-direction: column; align-items: flex-start; }
   .hero-actions { flex-direction: column; align-items: stretch; }
 }
+
+/* === Real imagery === */
+/* Replaces the CSS-gradient + emoji placeholders with the generated photos.
+   Original gradient rules above are kept as fallbacks; these overrides win
+   via the cascade (later, equal-specificity). Paths are absolute clean-URL. */
+
+/* Hero — light romantic blush theme, dark overlay text, so use a soft light
+   scrim to keep the title readable over the photo. */
+.hero-art {
+  background:
+    linear-gradient(rgba(255, 250, 248, 0.35), rgba(255, 250, 248, 0.45)),
+    url('/belle-fleur/assets/img/hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-art::after { display: none; }
+.hero-art-label { display: none; }
+
+/* Featured products — real 3:4 shots, same order as the DOM cards. */
+.product-art {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.product-art::after { display: none; }
+.product-emoji,
+.product-art-name { display: none; }
+.art-1 { background-image: url('/belle-fleur/assets/img/product-1.png'); }
+.art-2 { background-image: url('/belle-fleur/assets/img/product-2.png'); }
+.art-3 { background-image: url('/belle-fleur/assets/img/product-3.png'); }
+.art-4 { background-image: url('/belle-fleur/assets/img/product-4.png'); }
+
+/* Atelier feature band — floral flat lay. */
+.atelier-art {
+  background:
+    url('/belle-fleur/assets/img/ad.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.atelier-art::after { display: none; }
+.atelier-art-label { display: none; }

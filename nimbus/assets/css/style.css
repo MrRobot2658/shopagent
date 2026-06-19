@@ -536,3 +536,49 @@ img { max-width: 100%; display: block; }
   .footer-bottom, .footer-meta { flex-direction: column; align-items: flex-start; }
   .hero-actions { flex-direction: column; align-items: stretch; }
 }
+
+/* === Real imagery === */
+/* Replaces the CSS-gradient + emoji placeholders above with the generated
+   photos on disk. Original gradient rules are kept intact as fallback; these
+   later rules win the cascade. Absolute clean-URL paths. */
+
+/* Hero — dark banner with light text: cover image + dark violet scrim */
+.hero-art {
+  background:
+    linear-gradient(rgba(15, 12, 25, 0.45), rgba(15, 12, 25, 0.6)),
+    url('/nimbus/assets/img/hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-art::after { display: none; }
+.hero-art-label { display: none; }
+
+/* Products — white-bg product shots as cover backgrounds */
+.product-art {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+}
+.product-art::after { display: none; }
+.product-emoji,
+.product-art-name { display: none; }
+/* Keep the discount badge above the photo */
+.discount-badge { z-index: 4; }
+
+.art-1 { background-image: url('/nimbus/assets/img/product-1.png'); }
+.art-2 { background-image: url('/nimbus/assets/img/product-2.png'); }
+.art-3 { background-image: url('/nimbus/assets/img/product-3.png'); }
+.art-4 { background-image: url('/nimbus/assets/img/product-4.png'); }
+
+/* Feature band — ad image as cover background */
+.atelier-art {
+  background:
+    url('/nimbus/assets/img/ad.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.atelier-art::after { display: none; }
+.atelier-art-label { display: none; }

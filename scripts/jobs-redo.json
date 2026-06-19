@@ -1,0 +1,77 @@
+[
+ {
+  "out": "luxefur/assets/img/hero.png",
+  "size": "1280*720",
+  "prompt": "Cinematic high-fashion editorial photograph, elegant female model wearing a midnight black mink fur coat, standing in a dark charcoal luxury studio, dramatic warm gold rim lighting, moody opulent atmosphere, ultra premium aesthetic, wide cinematic composition, depth of field"
+ },
+ {
+  "out": "luxefur/assets/img/product-1.png",
+  "size": "768*1024",
+  "prompt": "Luxury product photography of a midnight black mink fur coat on an invisible mannequin, dense glossy fur, dark charcoal seamless background, warm gold rim light, premium fashion catalog shot, centered"
+ },
+ {
+  "out": "luxefur/assets/img/product-2.png",
+  "size": "768*1024",
+  "prompt": "Luxury product photography of a silver fox fur coat, soft natural grey fur with subtle sheen, dark studio background, elegant directional lighting, premium fashion catalog shot, centered"
+ },
+ {
+  "out": "luxefur/assets/img/product-3.png",
+  "size": "768*1024",
+  "prompt": "Luxury product photography of a cream Italian shearling sheepskin jacket, soft suede exterior plush wool collar, warm beige studio background, premium fashion catalog shot, centered"
+ },
+ {
+  "out": "luxefur/assets/img/product-4.png",
+  "size": "768*1024",
+  "prompt": "Luxury product photography of an elegant premium faux fur coat in soft taupe, fluffy texture, dark moody studio background, refined fashion catalog shot, centered"
+ },
+ {
+  "out": "pawmaison/assets/img/hero.png",
+  "size": "1280*720",
+  "prompt": "Bright airy lifestyle photograph of a happy elegant dog lounging in a luxury modern minimalist home, soft natural daylight, premium pet brand editorial, warm inviting mood, wide composition"
+ },
+ {
+  "out": "pawmaison/assets/img/product-1.png",
+  "size": "768*1024",
+  "prompt": "Premium product photography of a plush velvet dog bed in sage green, soft tufted cushion, clean light studio background, elegant pet product catalog shot, centered"
+ },
+ {
+  "out": "pawmaison/assets/img/product-2.png",
+  "size": "768*1024",
+  "prompt": "Premium product photography of a luxury Italian tan leather dog collar with polished brass buckle, soft neutral studio background, elegant pet accessory catalog shot, centered"
+ },
+ {
+  "out": "pawmaison/assets/img/product-3.png",
+  "size": "768*1024",
+  "prompt": "Premium product photography of a stylish full-grain brown leather pet carrier bag, modern minimalist design, clean light studio background, elegant catalog shot, centered"
+ },
+ {
+  "out": "pawmaison/assets/img/product-4.png",
+  "size": "768*1024",
+  "prompt": "Premium product photography of freeze-dried salmon gourmet pet food in elegant minimalist kraft packaging, clean light studio background, catalog shot, centered"
+ },
+ {
+  "out": "cupid-sport/assets/img/hero.png",
+  "size": "1280*720",
+  "prompt": "Dynamic athletic editorial photograph of a fit muscular man sprinting, motion energy, modern concrete gym environment, dramatic high-contrast lighting, premium sportswear campaign, wide cinematic composition"
+ },
+ {
+  "out": "cupid-sport/assets/img/product-1.png",
+  "size": "768*1024",
+  "prompt": "Product photography of men's black athletic training shorts, 4-way stretch technical fabric, neatly presented on clean light grey studio background, sportswear catalog shot, centered"
+ },
+ {
+  "out": "cupid-sport/assets/img/product-2.png",
+  "size": "768*1024",
+  "prompt": "Product photography of men's vivid bright orange running sport shorts, lightweight fabric, clean light grey studio background, energetic sportswear catalog shot, centered"
+ },
+ {
+  "out": "cupid-sport/assets/img/product-3.png",
+  "size": "768*1024",
+  "prompt": "Product photography of men's ultra-light navy running shorts, breathable mesh, clean light grey studio background, athletic catalog shot, centered"
+ },
+ {
+  "out": "cupid-sport/assets/img/product-4.png",
+  "size": "768*1024",
+  "prompt": "Product photography of men's black compression sport shorts, moisture-wicking fabric, clean light grey studio background, athletic catalog shot, centered"
+ }
+]

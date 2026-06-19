@@ -470,3 +470,37 @@ img { max-width: 100%; display: block; }
   .footer-bottom, .footer-meta { flex-direction: column; align-items: flex-start; }
   .hero-actions { flex-direction: column; align-items: stretch; }
 }
+
+/* === Real imagery === */
+/* Wires the generated photos in over the gradient placeholders above.
+   These rules come last so they win the cascade; the original gradient
+   rules remain as a fallback if an image fails to load. */
+
+/* Hero: cover photo with a dark scrim so the light overlay text stays legible */
+.hero-art {
+  background: linear-gradient(rgba(10, 9, 7, 0.55), rgba(10, 9, 7, 0.65)),
+    url('/luxefur/assets/img/hero.png') center / cover no-repeat;
+}
+.hero-art::after { display: none; }
+.hero-art-label { display: none; }
+
+/* Featured products: each card's art block gets its matching photo */
+.product-art {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.product-art::after { display: none; }
+.product-emoji,
+.product-art-name { display: none; }
+.art-1 { background-image: url('/luxefur/assets/img/product-1.png'); }
+.art-2 { background-image: url('/luxefur/assets/img/product-2.png'); }
+.art-3 { background-image: url('/luxefur/assets/img/product-3.png'); }
+.art-4 { background-image: url('/luxefur/assets/img/product-4.png'); }
+
+/* Atelier feature band: cover photo */
+.atelier-art {
+  background: url('/luxefur/assets/img/ad.png') center / cover no-repeat;
+}
+.atelier-art::after { display: none; }
+.atelier-art-label { display: none; }
