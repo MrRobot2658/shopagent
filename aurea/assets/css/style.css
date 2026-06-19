@@ -575,7 +575,7 @@ img { max-width: 100%; display: block; }
 .hero-art {
   background:
     linear-gradient(180deg, rgba(250,245,236,0.18) 0%, rgba(250,245,236,0.50) 55%, rgba(247,236,216,0.80) 100%),
-    url('/aurea/assets/img/hero.png') center / cover no-repeat;
+    url('/aurea/assets/img/hero.webp') center / cover no-repeat;
 }
 .hero-art::after { content: none; }
 .hero-art-label { display: none; }
@@ -590,15 +590,15 @@ img { max-width: 100%; display: block; }
 .product-art::after { content: none; }
 .product-emoji,
 .product-art-name { display: none; }
-.art-1 { background-image: url('/aurea/assets/img/product-1.png'); }
-.art-2 { background-image: url('/aurea/assets/img/product-2.png'); }
-.art-3 { background-image: url('/aurea/assets/img/product-3.png'); }
-.art-4 { background-image: url('/aurea/assets/img/product-4.png'); }
+.art-1 { background-image: url('/aurea/assets/img/product-1.webp'); }
+.art-2 { background-image: url('/aurea/assets/img/product-2.webp'); }
+.art-3 { background-image: url('/aurea/assets/img/product-3.webp'); }
+.art-4 { background-image: url('/aurea/assets/img/product-4.webp'); }
 
 /* Feature band — gold jewelry flat lay on marble. */
 .atelier-art {
   background:
-    url('/aurea/assets/img/ad.png') center / cover no-repeat;
+    url('/aurea/assets/img/ad.webp') center / cover no-repeat;
 }
 .atelier-art::after { content: none; }
 .atelier-art-label { display: none; }

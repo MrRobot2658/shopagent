@@ -442,12 +442,12 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 /* Self-contained storefront preview mockups — no scrim/wordmark (store name is in the tile body) */
 .store-preview .pv-emoji,
 .store-preview .pv-brand { display: none; }
-.pv-fur   { background-image: url('/luxefur/assets/img/preview.png'); }
-.pv-pet   { background-image: url('/pawmaison/assets/img/preview.png'); }
-.pv-sport { background-image: url('/cupid-sport/assets/img/preview.png'); }
-.pv-women { background-image: url('/belle-fleur/assets/img/preview.png'); }
-.pv-home  { background-image: url('/nimbus/assets/img/preview.png'); }
-.pv-jewel { background-image: url('/aurea/assets/img/preview.png'); }
+.pv-fur   { background-image: url('/luxefur/assets/img/preview.webp'); }
+.pv-pet   { background-image: url('/pawmaison/assets/img/preview.webp'); }
+.pv-sport { background-image: url('/cupid-sport/assets/img/preview.webp'); }
+.pv-women { background-image: url('/belle-fleur/assets/img/preview.webp'); }
+.pv-home  { background-image: url('/nimbus/assets/img/preview.webp'); }
+.pv-jewel { background-image: url('/aurea/assets/img/preview.webp'); }
 .store-state {
   position: absolute; top: 12px; right: 12px;
   font-size: 0.72rem; font-weight: 700;

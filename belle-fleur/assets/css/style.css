@@ -487,7 +487,7 @@ img { max-width: 100%; display: block; }
 .hero-art {
   background:
     linear-gradient(rgba(255, 250, 248, 0.35), rgba(255, 250, 248, 0.45)),
-    url('/belle-fleur/assets/img/hero.png');
+    url('/belle-fleur/assets/img/hero.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -504,15 +504,15 @@ img { max-width: 100%; display: block; }
 .product-art::after { display: none; }
 .product-emoji,
 .product-art-name { display: none; }
-.art-1 { background-image: url('/belle-fleur/assets/img/product-1.png'); }
-.art-2 { background-image: url('/belle-fleur/assets/img/product-2.png'); }
-.art-3 { background-image: url('/belle-fleur/assets/img/product-3.png'); }
-.art-4 { background-image: url('/belle-fleur/assets/img/product-4.png'); }
+.art-1 { background-image: url('/belle-fleur/assets/img/product-1.webp'); }
+.art-2 { background-image: url('/belle-fleur/assets/img/product-2.webp'); }
+.art-3 { background-image: url('/belle-fleur/assets/img/product-3.webp'); }
+.art-4 { background-image: url('/belle-fleur/assets/img/product-4.webp'); }
 
 /* Atelier feature band — floral flat lay. */
 .atelier-art {
   background:
-    url('/belle-fleur/assets/img/ad.png');
+    url('/belle-fleur/assets/img/ad.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

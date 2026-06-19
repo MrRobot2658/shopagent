@@ -546,7 +546,7 @@ img { max-width: 100%; display: block; }
 .hero-art {
   background:
     linear-gradient(rgba(15, 12, 25, 0.45), rgba(15, 12, 25, 0.6)),
-    url('/nimbus/assets/img/hero.png');
+    url('/nimbus/assets/img/hero.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -567,15 +567,15 @@ img { max-width: 100%; display: block; }
 /* Keep the discount badge above the photo */
 .discount-badge { z-index: 4; }
 
-.art-1 { background-image: url('/nimbus/assets/img/product-1.png'); }
-.art-2 { background-image: url('/nimbus/assets/img/product-2.png'); }
-.art-3 { background-image: url('/nimbus/assets/img/product-3.png'); }
-.art-4 { background-image: url('/nimbus/assets/img/product-4.png'); }
+.art-1 { background-image: url('/nimbus/assets/img/product-1.webp'); }
+.art-2 { background-image: url('/nimbus/assets/img/product-2.webp'); }
+.art-3 { background-image: url('/nimbus/assets/img/product-3.webp'); }
+.art-4 { background-image: url('/nimbus/assets/img/product-4.webp'); }
 
 /* Feature band — ad image as cover background */
 .atelier-art {
   background:
-    url('/nimbus/assets/img/ad.png');
+    url('/nimbus/assets/img/ad.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

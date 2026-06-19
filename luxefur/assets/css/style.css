@@ -479,7 +479,7 @@ img { max-width: 100%; display: block; }
 /* Hero: cover photo with a dark scrim so the light overlay text stays legible */
 .hero-art {
   background: linear-gradient(rgba(10, 9, 7, 0.55), rgba(10, 9, 7, 0.65)),
-    url('/luxefur/assets/img/hero.png') center / cover no-repeat;
+    url('/luxefur/assets/img/hero.webp') center / cover no-repeat;
 }
 .hero-art::after { display: none; }
 .hero-art-label { display: none; }
@@ -493,14 +493,14 @@ img { max-width: 100%; display: block; }
 .product-art::after { display: none; }
 .product-emoji,
 .product-art-name { display: none; }
-.art-1 { background-image: url('/luxefur/assets/img/product-1.png'); }
-.art-2 { background-image: url('/luxefur/assets/img/product-2.png'); }
-.art-3 { background-image: url('/luxefur/assets/img/product-3.png'); }
-.art-4 { background-image: url('/luxefur/assets/img/product-4.png'); }
+.art-1 { background-image: url('/luxefur/assets/img/product-1.webp'); }
+.art-2 { background-image: url('/luxefur/assets/img/product-2.webp'); }
+.art-3 { background-image: url('/luxefur/assets/img/product-3.webp'); }
+.art-4 { background-image: url('/luxefur/assets/img/product-4.webp'); }
 
 /* Atelier feature band: cover photo */
 .atelier-art {
-  background: url('/luxefur/assets/img/ad.png') center / cover no-repeat;
+  background: url('/luxefur/assets/img/ad.webp') center / cover no-repeat;
 }
 .atelier-art::after { display: none; }
 .atelier-art-label { display: none; }

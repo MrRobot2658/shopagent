@@ -896,21 +896,21 @@ button {
    The hero copy lives in a separate grid column (not over the image),
    so no scrim is needed for text legibility. */
 .placeholder-hero {
-  background-image: url("/pawmaison/assets/img/hero.png");
+  background-image: url("/pawmaison/assets/img/hero.webp");
 }
 
 /* Category tiles — matched to what each photo actually depicts */
 .ph-bed {
-  background-image: url("/pawmaison/assets/img/product-1.png");
+  background-image: url("/pawmaison/assets/img/product-1.webp");
 } /* Velvet Dog Bed */
 .ph-collar {
-  background-image: url("/pawmaison/assets/img/product-2.png");
+  background-image: url("/pawmaison/assets/img/product-2.webp");
 } /* Leather Collar */
 .ph-travel {
-  background-image: url("/pawmaison/assets/img/product-3.png");
+  background-image: url("/pawmaison/assets/img/product-3.webp");
 } /* Pet Carrier Bag */
 .ph-food {
-  background-image: url("/pawmaison/assets/img/product-4.png");
+  background-image: url("/pawmaison/assets/img/product-4.webp");
 } /* Freeze-Dried Food */
 
 /* Lifestyle band behind the testimonial — golden retriever + cat in a living
@@ -921,7 +921,7 @@ button {
       rgba(33, 79, 67, 0.82),
       rgba(33, 79, 67, 0.82)
     ),
-    url("/pawmaison/assets/img/ad.png");
+    url("/pawmaison/assets/img/ad.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
