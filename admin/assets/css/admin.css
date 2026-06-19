@@ -442,6 +442,9 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .pv-fur { background: linear-gradient(135deg, #3a2e22, #6b5436); }
 .pv-pet { background: linear-gradient(135deg, #1f4d46, #2f7d6f); }
 .pv-sport { background: linear-gradient(135deg, #111827, #334155); }
+.pv-women { background: linear-gradient(135deg, #7a2440, #c45c79); }
+.pv-home { background: linear-gradient(135deg, #2e1065, #6d28d9); }
+.pv-jewel { background: linear-gradient(135deg, #5c1622, #a8472f); }
 .store-state {
   position: absolute; top: 12px; right: 12px;
   font-size: 0.72rem; font-weight: 700;

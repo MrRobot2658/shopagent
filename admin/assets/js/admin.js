@@ -8,7 +8,13 @@
     pet:   { name: 'PAWMAISON',   visitors: '51,038', orders: '3,142', revenue: '$486K',  cvr: '3.42%',
              rev: [30, 38, 44, 41, 52, 58, 55, 63, 69, 74] },
     sport: { name: 'CUPID SPORT', visitors: '127,654', orders: '8,930', revenue: '$392K', cvr: '4.10%',
-             rev: [48, 52, 60, 58, 67, 72, 70, 81, 88, 95] }
+             rev: [48, 52, 60, 58, 67, 72, 70, 81, 88, 95] },
+    women: { name: 'BELLE FLEUR', visitors: '96,420', orders: '4,615', revenue: '$1.18M', cvr: '3.18%',
+             rev: [35, 41, 50, 47, 58, 64, 62, 71, 79, 86] },
+    home:  { name: 'NIMBUS',      visitors: '68,733', orders: '1,902', revenue: '$1.04M', cvr: '2.74%',
+             rev: [40, 46, 44, 55, 61, 59, 68, 73, 77, 83] },
+    jewel: { name: 'AUREA',       visitors: '44,517', orders: '1,356', revenue: '$612K',  cvr: '3.05%',
+             rev: [28, 34, 39, 45, 43, 52, 57, 60, 66, 72] }
   };
   var WEEKS = ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10'];
 

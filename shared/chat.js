@@ -13,7 +13,7 @@
   // Derive the store slug from the URL (/luxefur, /pawmaison, /cupid-sport).
   function storeSlug() {
     var seg = (location.pathname.split("/").filter(Boolean)[0] || "").toLowerCase();
-    return ["luxefur", "pawmaison", "cupid-sport"].indexOf(seg) >= 0 ? seg : null;
+    return ["luxefur", "pawmaison", "cupid-sport", "belle-fleur", "nimbus", "aurea"].indexOf(seg) >= 0 ? seg : null;
   }
 
   // Stream a reply from the backend, calling onDelta(text) for each chunk.
