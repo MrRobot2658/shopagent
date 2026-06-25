@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "shops-agent": {
+      "command": "/Users/lei26/Downloads/shopagent/mcp-server/.venv/bin/python",
+      "args": ["/Users/lei26/Downloads/shopagent/mcp-server/server.py"],
+      "env": {
+        "SHOPAGENT_API": "http://localhost:8091"
+      }
+    }
+  }
+}
